@@ -105,3 +105,73 @@ function B = p18(A)
     B(:,1) = A(:,end);
 end
 
+%Problem 20. Summing digits
+function b = p20(n)
+    b = sum(num2str(2^n)-'0');
+end
+
+%Problem 21. Return the 3n+1 sequence for n
+function c = p21(n)
+    if n == 1
+        c = [1];
+    elseif mod(n, 2) == 0
+        c = [n p21(n / 2)];
+    else
+        c = [n p21(3 * n + 1)];
+    end
+end
+
+%Problem 22. Remove the vowels
+function s2 = p22(s1)
+    cons = [" ","b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z","B","C","D","F","G","H","J","K","L","M","N","P","Q","R","S","T","V","W","X","Y","Z"];
+    s2 = s1(ismember(s1(:), cons));
+end
+
+%Problem 23. Finding Perfect Squares
+function b = p23(a)
+    b = sum(ismember(a .^ 2, a)) > 0;
+end
+
+%Problem 24. Function Iterator
+function fh2 = p24(fh, n)
+    fh2 = fh;
+    for k = 1:n-1
+        fh2 = @(x)fh(fh2(x));
+    end
+end
+
+%Problem 25. Remove any row in which a NaN appears
+function B = p25(A)
+    B = A(all(A==A, 2),:);
+end
+
+%Problem 26. Determine if input is odd
+function tf = p26(n)
+    tf = mod(n, 2) ~= 0; 
+end
+
+%Problem 27. Pangrams!
+function tf = p27(s)
+    alphabet = [ ' ' 'a' 'b' 'c' 'd' 'e' 'f' 'g' 'h' 'i' 'j' 'k' 'l' 'm' 'n' 'o' 'p' 'q' 'r' 's' 't' 'u' 'v' 'w' 'x' 'y' 'z'];
+    tf = sum(ismember(alphabet, lower(s))) == 27;
+end
+
+%Problem 29. Nearest Numbers
+function [index1 index2] = p29(A)
+    temp = abs(A' - A);
+    [min_val, ~]=min(temp((1:size(temp,1)).' > (1:size(temp,2))));
+    [~, y] = find(temp + diag(zeros(length(A),1) + NaN) == min_val);
+    index1 = min(y(1));
+    index2 = max(y(2));
+end
+
+%Problem 30. Sort a list of complex numbers based on far they are from the origin.
+function zSorted = p30(z)
+    [~, i] = sort(abs(z));
+    zSorted = z(flip(i));
+end
+
+%Problem 32. Most nonzero elements in row
+function r = p32(a)
+    [~, r] = min(sum((a==0)'));
+end
