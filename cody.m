@@ -175,3 +175,18 @@ end
 function r = p32(a)
     [~, r] = min(sum((a==0)'));
 end
+
+%Problem 33. Create times-tables
+function m = p33(n)
+    m = kron(1:n, (1:n)');
+end
+
+%Problem 34. Binary numbers
+function A = p34(n)
+    if n == 1
+        A = [0; 1];
+    else
+        temp = p34(n - 1);
+        A = [[temp; temp] [zeros(1, 2^(n - 1)) ones(1, 2^(n - 1))]'];
+    end
+end
