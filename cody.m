@@ -190,3 +190,55 @@ function A = p34(n)
         A = [[temp; temp] [zeros(1, 2^(n - 1)) ones(1, 2^(n - 1))]'];
     end
 end
+
+%Problem 36. Find relatively common elements in matrix rows
+function y = p36(x)
+    values = unique(x);
+    y = [];
+    for v = values'
+        [r, ~] = find(v == x);
+        r = unique(r);
+        if length(r) > floor(size(x, 1) / 2)
+            y = [y v];
+        end
+    end
+end
+
+%Problem 37. Pascal's Triangle
+function y = p37(n)
+    y = zeros(1, n+1);
+    for k = 0:n
+        y(k+1) = nchoosek(n, k);
+    end
+end
+
+%Problem 38. Return a list sorted by number of occurrences
+function y = p38(x)
+  x_u = unique(x);
+  [~, n] = sort(histc(x,x_u),'descend');
+  y = x_u(n);
+end
+
+%Problem 39. Which values occur exactly three times?
+function y = p39(x)
+    x_u = unique(x);
+    y = sort(x_u((histc(x,x_u)) == 3));
+end
+
+%Problem 40. Reverse Run-Length Encoder
+function y = p40(x)
+    n = length(x);
+    y = [];
+    for i = 1:2:n-1
+        y = [y x(i + 1) * ones(1, x(i))]
+    end
+end
+
+%Problem 42. Find the alphabetic word product
+function p = p42(s)
+    s = lower(s);
+    p = 1
+    for i = 1:length(s)
+        p = p * find('a':'z' == s(i))
+    end
+end
