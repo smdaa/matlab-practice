@@ -242,3 +242,24 @@ function p = p42(s)
         p = p * find('a':'z' == s(i))
     end
 end
+
+%Problem 43. Subset Sum
+function ind = p43(v,n)
+    dec2bin(1:2 ^ numel(v) - 1) == '1';
+    ind = strfind(ans(ans * v' == n, :), 1);
+end
+
+%Problem 44. Trimming Spaces
+function b = p44(a)
+    find(a ~= ' ');
+    b = a(min(ans):max(ans));
+end
+
+%Problem 45. Make a Palindrome Number
+function tf = is_palindrome(a)
+    b = str2num(flip(num2str(a)));
+    while b ~= a
+        a = a + b;
+        b = str2num(flip(num2str(a)));
+    end
+end
