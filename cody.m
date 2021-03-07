@@ -256,10 +256,60 @@ function b = p44(a)
 end
 
 %Problem 45. Make a Palindrome Number
-function tf = is_palindrome(a)
+function tf = p45(a)
     b = str2num(flip(num2str(a)));
     while b ~= a
         a = a + b;
         b = str2num(flip(num2str(a)));
     end
+end
+
+%Problem 46. Which doors are open?
+function y = p46(n)
+    x = zeros(1, n);
+    for i = 1:n 
+        x(i:i:end) = (x(i:i:end) == 0);
+    end
+    y = find(x == 1);
+end
+
+%Problem 47. Extract leading non-zero digit
+function y = p47(x)
+    y = x;
+    for i = 1:length(x)
+        temp = num2str(x(i)) - '0';
+        temp = temp(temp > 0);
+        y(i) = temp(1);
+    end
+end
+
+%Problem 48. Making change
+function b = p48(a)
+    cur = [10000 5000 2000 1000 500 200 100 50 25 10 5 1];
+    b = zeros(1, length(cur));
+    a=a*100;
+    for i = 1:length(cur)
+        b(i) = floor(a / cur(i));
+        a = mod(a, cur(i));
+    end
+end
+
+%Problem 49. Sums with Excluded Digits
+function total = p49(n,m)
+    total = 0;
+    for v = 1:n
+        if ~ ismember(m, num2str(v) - '0')
+            total = total + v;
+        end
+    end
+end
+
+%Problem 50. QWERTY coordinates
+function [r,c] = qwerty_coord(key)
+    A = zeros(4, 10);  
+    A(1,:) = '1234567890';  
+    A(2,:) = 'qwertyuiop';  
+    A(3,1:9) = 'asdfghjkl';  
+    A(4,1:7) = 'zxcvbnm';  
+    [r c] = find(A == key);
 end
